@@ -19,6 +19,8 @@ public class BishopMoveTests {
                         | | | | | | | | |
                         """,
                 new ChessPosition(5, 4),
+                //for new int[][]{ it says 6,5 that would mean it would go to the first box to the right of B, one move
+                //diagonal to the right.
                 new int[][]{
                         {6, 5}, {7, 6}, {8, 7},
                         {4, 5}, {3, 6}, {2, 7}, {1, 8},
