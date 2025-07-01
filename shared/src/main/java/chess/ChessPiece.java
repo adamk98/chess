@@ -56,8 +56,16 @@ public class ChessPiece {
      *
      * @return Collection of valid moves
      */
-    public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        return new ArrayList<>();
 
+    //this method pieceMoves returns 'theMoves collection' from RookMoveCalculator
+    public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
+        if(this.type == PieceType.ROOK){
+            RookMoveCalculator rookCalc = new RookMoveCalculator(pieceColor);
+            return rookCalc.pieceMoves(board, myPosition);
+
+        }
+
+        //board.getPiece(myPosition);
+    return null;
     }
 }

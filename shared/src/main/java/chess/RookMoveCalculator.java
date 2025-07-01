@@ -20,43 +20,48 @@ public class RookMoveCalculator implements PieceMovesCalculator {
         // the enemy piece
         Collection<ChessMove> theMoves = new ArrayList<>();
 
-        //myPosition gives row and col
-        //within bounds of baord. getCol in ChessPosition
-        if(myPosition.getColumn() > 8 || myPosition.getColumn() < 1){
-            return null;
-        }
-        if(myPosition.getRow() > 8 || myPosition.getRow() < 1){
-            return null;
+        //So smart, this repeats all the moves.
+        theMoves.addAll(repeatMoves(board, myPosition, 0, 1));
+        theMoves.addAll(repeatMoves(board, myPosition, 0, -1));
+        theMoves.addAll(repeatMoves(board, myPosition, 1, 0));
+        theMoves.addAll(repeatMoves(board, myPosition, -1, 0));
 
-        }
+        return theMoves;
 
-        //create my piece. rook is stored locally right here as myPiece
+    }
+
+    private Collection<ChessMove> repeatMoves(ChessBoard board, ChessPosition myPosition, int rowMod, int colMod){
+        Collection<ChessMove> theMoves = new ArrayList<>();
+
         ChessPiece myPiece = board.getPiece(myPosition);
 
-        //caclulate create new position
-        ChessPosition testPosition = new ChessPosition(myPosition.getRow(), myPosition.getColumn() + 1);
-        //test position if it is off the board
-        if(testPosition.getColumn() > 8 || testPosition.getColumn() < 1){
-            return null;
+        ChessPosition testPosition = new ChessPosition(myPosition.getRow() + rowMod, myPosition.getColumn() + colMod);
+        ChessPiece isPiece;
+        //test the ROOK going to the right
+        while(testPosition.getColumn() <= 8 && testPosition.getColumn() >= 1 && testPosition.getRow() <=8 && testPosition.getRow() >=1){
+            //if space on board is empty, that's a possible move, so add it to collection
+            //PUT IN WHILE LOOP
+            isPiece = board.getPiece(testPosition);
+            if(isPiece == null){
+                theMoves.add(new ChessMove(myPosition, testPosition, null));
+
+
+                testPosition = new ChessPosition(testPosition.getRow() + rowMod, testPosition.getColumn() + colMod);
+                //isPiece = board.getPiece(testPosition);
+
+            } else if(isPiece.getTeamColor() != myPiece.getTeamColor()) {
+                //when in while loop use break. because the while loop is automatically adding each possible moves to the
+                //Collection of moves (Collection<ChessMove> theMoves = new ArrayList<>();) line 21 or around if code changes
+                //and we don't want to add possible location 'myPiece' can move to.
+                theMoves.add(new ChessMove(myPosition, testPosition, null));
+                break;
+            }else {
+                //the only other option is if ispiece and mypiece are the same color so else covers that.
+                //break out of loop
+                break;
+            }
         }
-        if(testPosition.getRow() > 8 || testPosition.getRow() < 1){
-            return null;
-        }
-
-        //chessboard stores position of pieces from ChessPosition
-        //isPiece an instance of ChessPiece(contains the color and type of piece)is the piece in the square I am looking at.
-        //
-        ChessPiece isPiece = board.getPiece(testPosition);
-        //if space on board is empty, that's a possible move, so add it to collection
-        if(isPiece == null){
-            theMoves.add(new ChessMove(myPosition, testPosition, null));
-        //i
-        } else if(isPiece.getTeamColor() == myPiece.getTeamColor()) {
-
-        }
-
-
-        return new ArrayList<>();
+        return theMoves;
     }
 }
 
