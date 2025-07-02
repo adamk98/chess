@@ -22,6 +22,7 @@ public class ChessBoard {
      */
     public void addPiece(ChessPosition position, ChessPiece piece) {
         //at squares 2D array, at row and col of passed in position a piece is in that 2d array.
+        //
         squares[position.getRow() - 1][position.getColumn() - 1] = piece;
     }
 

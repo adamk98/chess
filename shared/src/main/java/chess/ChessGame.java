@@ -14,8 +14,7 @@ public class ChessGame {
 
 
     public ChessGame() {
-        //starts game on WHITES turn.
-        //this.teamTurn = teamColor.WHITE;
+        //team color is given
         this.board = new ChessBoard();
 
     }

@@ -62,7 +62,6 @@ public class ChessPiece {
         if(this.type == PieceType.ROOK){
             RookMoveCalculator rookCalc = new RookMoveCalculator(pieceColor);
             return rookCalc.pieceMoves(board, myPosition);
-
         }
 
         //board.getPiece(myPosition);

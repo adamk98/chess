@@ -1,11 +1,14 @@
 package chess;
 
+import java.util.Objects;
+
 /**
  * Represents moving a chess piece on a chessboard
  * <p>
  * Note: You can add to this class, but you may not alter
  * signature of the existing methods.
  */
+//ChessPosition startPosition goes to ChessPosition
 public class ChessMove {
     private final ChessPosition startPosition;
     private final ChessPosition endPosition;
@@ -27,6 +30,30 @@ public class ChessMove {
         //throw new RuntimeException("Not implemented");
         return startPosition;
 
+    }
+    //this puts the error code in string so i can read it.
+    @Override
+    public String toString() {
+        return "ChessMove{" +
+                "startPosition=" + startPosition +
+                ", endPosition=" + endPosition +
+                ", promotionPiece=" + promotionPiece +
+                '}';
+    }
+    //java cannot compare a custom data type i made so java need this equals and hash to methods to help them do it!
+    //to generate equals and hash methods click anywhere where the is space in the code inbetween methods
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ChessMove chessMove = (ChessMove) o;
+        return Objects.equals(startPosition, chessMove.startPosition) && Objects.equals(endPosition, chessMove.endPosition) && promotionPiece == chessMove.promotionPiece;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(startPosition, endPosition, promotionPiece);
     }
 
     /**
