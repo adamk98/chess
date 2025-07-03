@@ -63,8 +63,12 @@ public class ChessPiece {
             RookMoveCalculator rookCalc = new RookMoveCalculator(pieceColor);
             return rookCalc.pieceMoves(board, myPosition);
         }
+        if(this.type == PieceType.BISHOP){
+            BishopMovesCalculator bishopCalc = new BishopMovesCalculator(pieceColor);
+            return bishopCalc.pieceMoves(board, myPosition);
+        }
 
-        //board.getPiece(myPosition);
+
     return null;
     }
 }

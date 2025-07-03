@@ -22,7 +22,7 @@ public class ChessBoard {
      */
     public void addPiece(ChessPosition position, ChessPiece piece) {
         //at squares 2D array, at row and col of passed in position a piece is in that 2d array.
-        //
+
         squares[position.getRow() - 1][position.getColumn() - 1] = piece;
     }
 
@@ -36,7 +36,7 @@ public class ChessBoard {
     public ChessPiece getPiece(ChessPosition position) {
 
         return squares[position.getRow() - 1][position.getColumn() - 1];
-
+        //return the data at this location in the array. It's not a real board, it's a made up board that a computer has data stored in that we call a chessboard.
     }
 
     /**
